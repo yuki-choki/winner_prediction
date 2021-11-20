@@ -1,4 +1,4 @@
-<x-guest-layout>
+<x-app-layout>
     <x-auth-card>
         <x-slot name="logo">
             <a href="/">
@@ -50,10 +50,10 @@
                     {{ __('Already registered?') }}
                 </a>
 
-                <x-button class="ml-4">
+                <x-button class="ml-3 post-cata post-sm cata-danger">
                     {{ __('Register') }}
                 </x-button>
             </div>
         </form>
     </x-auth-card>
-</x-guest-layout>
+</x-app-layout>
