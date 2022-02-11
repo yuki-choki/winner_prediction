@@ -56,33 +56,18 @@
                                     <!-- Nav Start -->
                                     <div class="classynav">
                                         <ul>
-                                            <li class="active"><a href="/">Home</a></li>
+                                            <li class="{{ \Request::path() === '/' ? 'active' : '' }}"><a href="/">Home</a></li>
                                             <li><a href="#">Event</a>
                                                 <ul class="dropdown">
-                                                    <li><a href="index.html">- RIZIN</a></li>
-                                                    <li><a href="archive-list.html">- K-1</a></li>
-                                                    <li><a href="archive-grid.html">- UFC</a></li>
-                                                    <li><a href="single-post.html">- DEEP</a></li>
-                                                    <li><a href="video-post.html">- ONE</a></li>
+                                                    @foreach (App\Models\Group::all() as $group)
+                                                        <li><a href="{{ route('group.show', ['group' => $group->id]) }}">{{ $group->name }}</a></li>
+                                                    @endforeach
                                                 </ul>
                                             </li>
-                                            <li><a href="#">Pages</a>
-                                                <ul class="dropdown">
-                                                    <li><a href="index.html">- Home</a></li>
-                                                    <li><a href="archive-list.html">- Archive List</a></li>
-                                                    <li><a href="archive-grid.html">- Archive Grid</a></li>
-                                                    <li><a href="single-post.html">- Single Post</a></li>
-                                                    <li><a href="video-post.html">- Single Video Post</a></li>
-                                                    <li><a href="contact.html">- Contact</a></li>
-                                                    <li><a href="typography.html">- Typography</a></li>
-                                                    <li><a href="login.html">- Login</a></li>
-                                                </ul>
-                                            </li>
-                                            <li><a href="contact.html">Contact</a></li>
                                             <li><a href="#">user</a>
                                                 <ul class="dropdown">
                                                     @if (Auth::check())
-                                                        <li><a href="#" class="pointer-events-none" style="color: gray;">{{ Auth::user()->name }} さん</a></li>
+                                                        <li><a href="#">MYPAGE</a></li>
                                                         <li>
                                                             <form method="POST" action="{{ route('logout') }}">
                                                                 @csrf
@@ -90,12 +75,12 @@
                                                                     href="{{ route('logout') }}"
                                                                     onclick="event.preventDefault();
                                                                                     this.closest('form').submit();"
-                                                                >{{ __('Log Out') }}</a>
+                                                                >LOGOUT</a>
                                                             </form>
                                                         </li>
                                                     @else
-                                                        <li><a href="{{ route('login') }}">- Login</a></li>
-                                                        <li><a href="{{ route('register') }}">- Register</a></li>
+                                                        <li><a href="{{ route('login') }}">LOGIN</a></li>
+                                                        <li><a href="{{ route('register') }}">REGISTER</a></li>
                                                     @endif
                                                 </ul>
                                             </li>
@@ -114,4 +99,26 @@
             </main>
         </div>
     </body>
+    <footer class="footer-area">
+        <div class="copywrite-area section-padding-80">
+            <div class="container m-auto">
+                <div class="row align-items-center">
+                    <div class="col-12 col-sm-6 text-center">
+                        <ul class="flex justify-center mb-30 flex-wrap">
+                            <li class="ml-30 mr-30 mb-15"><a href="#">Advertise</a></li>
+                            <li class="ml-30 mr-30 mb-15"><a href="#">About</a></li>
+                            <li class="ml-30 mr-30 mb-15"><a href="#">Contact</a></li>
+                            <li class="ml-30 mr-30 mb-15"><a href="#">Disclaimer</a></li>
+                            <li class="ml-30 mr-30 mb-15"><a href="#">Privacy</a></li>
+                        </ul>
+                    </div>
+                    <div class="col-12 col-sm-6 text-center">
+                        <p class="copywrite-text">
+                            &copy;<script>document.write(new Date().getFullYear());</script> Yuki Chouki
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
 </html>

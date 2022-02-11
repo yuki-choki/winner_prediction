@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\DB;
 
 class Predict extends Model
 {
@@ -27,5 +28,14 @@ class Predict extends Model
     public function fighter()
     {
         return $this->belongsTo(Fighter::class);
+    }
+
+    public function scopeGroupByFightAndFighter($query, $fightIds)
+    {
+        return $query
+            ->select(DB::raw('count(*) as count, fight_id, win_fighter_id'))
+            ->whereIn('fight_id', $fightIds)
+            ->groupByRaw('fight_id, win_fighter_id')
+            ->get();
     }
 }

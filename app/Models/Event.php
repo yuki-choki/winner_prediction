@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Carbon\Carbon;
 
 class Event extends Model
 {
@@ -14,11 +15,6 @@ class Event extends Model
         'updated_at',
     ];
 
-    public function scopeGetEventByName($query, $array)
-    {
-        return $query->where('name', $array['name']);
-    }
-
     public function group()
     {
         return $this->belongsTo(Group::class);
@@ -27,5 +23,20 @@ class Event extends Model
     public function fights()
     {
         return $this->hasMany(Fight::class);
+    }
+
+    public function scopeGetEventByName($query, $options)
+    {
+        return $query->where('name', $options['name']);
+    }
+
+    /**
+     * 直近のイベントを取得（過去のイベントは除外）
+     * 
+     * @return App\Models\Event|null
+     */
+    public function scopeGetAttentionEvent($query, $options = [])
+    {
+        return $query->where('date', '>', Carbon::now())->first();
     }
 }
