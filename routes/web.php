@@ -1,6 +1,10 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\HomeController;
+use App\Http\Controllers\GroupController;
+use App\Http\Controllers\EventController;
+use App\Http\Controllers\FightController;
 
 /*
 |--------------------------------------------------------------------------
@@ -13,9 +17,13 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', [HomeController::class, 'index'])->name('home');
+
+Route::resources([
+    'group' => GroupController::class,
+    'event' => EventController::class,
+    'fight' => FightController::class,
+]);
 
 Route::get('/dashboard', function () {
     return view('dashboard');

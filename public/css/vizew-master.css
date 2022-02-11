@@ -928,7 +928,7 @@ input:focus {
   border: none;
   color: #ffffff;
   line-height: 1;
-  margin-bottom: 15px;
+  margin-bottom: 10px;
   display: inline-block; }
   .post-cata.cata-success {
     background-color: #3cb878; }
@@ -936,6 +936,14 @@ input:focus {
     background-color: #db4437; }
   .post-cata.cata-primary {
     background-color: #1996ce; }
+  .post-cata.cata-warning {
+    background-color: #ffc107; }
+  .post-cata.cata-info {
+    background-color: #17a2b8; }
+  .post-cata.cata-secondary {
+    background-color: #6c757d; }
+  .post-cata.cata-dark {
+    background-color: #343a40; }
   .post-cata:hover, .post-cata:focus {
     background-color: #0f1112;
     font-size: 12px; }
