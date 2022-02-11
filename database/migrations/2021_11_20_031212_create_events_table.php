@@ -3,7 +3,6 @@
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
-use App\Models\Group;
 
 class CreateEventsTable extends Migration
 {
@@ -19,6 +18,8 @@ class CreateEventsTable extends Migration
             $table->foreignId('group_id')->constrained('groups')->cascadeOnUpdate()->cascadeOnDelete();
             $table->string('name');
             $table->date('date');
+            $table->text('image');
+            $table->string('from_url')->nullable();
             $table->timestamps();
         });
     }
