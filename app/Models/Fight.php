@@ -17,6 +17,13 @@ class Fight extends Model
         'updated_at',
     ];
 
+    protected $appends = ['displayMatchMake'];
+
+    public function getDisplayMatchMakeAttribute()
+    {
+        return sprintf('%s vs %s', $this->redFighter->name, $this->blueFighter->name);
+    }
+
     public function predicts()
     {
         return $this->hasMany(Predict::class);
