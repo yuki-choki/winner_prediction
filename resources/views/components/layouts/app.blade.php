@@ -22,7 +22,7 @@
         <script src="{{ asset('js/plugin/active.js') }}" defer></script>
     </head>
     <body class="font-sans antialiased">
-        <div class="overflow-hidden">
+        <div>
             <!-- Preloader -->
             <div class="preloader flex items-center justify-content-center">
                 <div class="lds-ellipsis">
