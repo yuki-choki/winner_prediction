@@ -46,7 +46,8 @@ class GroupController extends Controller
      */
     public function show(Group $group)
     {
-        //
+        $group->load(['events.fights']);
+        return view('group.show', compact('group'));
     }
 
     /**

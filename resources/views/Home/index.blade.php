@@ -15,7 +15,7 @@
                                 <img src="{{ $attentionEvent->image }}" alt="" width="100%">
                             </a>
                             @if ($attentionEvent->from_url)
-                                <a href="{{ $attentionEvent->from_url }}" target="_brank">引用元：{{ $attentionEvent->from_url }}</a>
+                                <a href="{{ $attentionEvent->from_url }}" target="_brank" style="font-size: 0.75rem;">引用元：{{ $attentionEvent->from_url }}</a>
                             @endif
                         </div>
                     </div>

@@ -39,4 +39,15 @@ class Event extends Model
     {
         return $query->where('date', '>', Carbon::now())->first();
     }
+
+    /**
+     * dateカラムのデータをフォーマットして表示
+     * 
+     * @param string $format
+     * @return string
+     */
+    public function formatDate($format = 'Y/m/d')
+    {
+        return date($format, strtotime($this->date));
+    }
 }
