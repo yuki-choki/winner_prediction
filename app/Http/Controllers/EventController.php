@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Event;
 use Illuminate\Http\Request;
+use App\Models\Predict;
 
 class EventController extends Controller
 {
@@ -46,7 +47,10 @@ class EventController extends Controller
      */
     public function show(Event $event)
     {
-        //
+        $event->load(['fights.redFighter', 'fights.blueFighter']);
+        $event->fights = $event->fights->sortBy('match_order');
+        $predicts = Predict::groupByFightAndFighter($event->pluck('id'));
+        return view('event.show', compact('event', 'predicts'));
     }
 
     /**
